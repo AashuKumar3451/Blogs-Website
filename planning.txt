@@ -1,0 +1,48 @@
+Blog Post Application
+
+What will Application do?
+--> A basic blog posting application that will allow user to add edit and delete their posts and see other user's posts.
+
+----------------------------------------------------------------------------------------------
+
+Functionalities:
+1. User Sign up/ Sign in.
+2. User can see their profile.
+3. User can update his/her credentials.
+4. User can add a blog and make it private or public according to his/her wish.
+5. User can see all user's blogs on the homepage.
+6. User can select single blog and see it in full page.
+7. User can update his/her blog anytime as long as he/she is connected to the system.
+8. When user will update his/her blog the publication time will also change to current time.
+9. User can delete his/her blog anytime as long as he/she is connected to the system.
+10. Admin can see blog posts.
+11. Admin can delete any blog.
+12. Admin can not add any blog.
+13. Admin can delete any account.
+
+-----------------------------------------------------------------------------------------------
+Routes: 
+1. User Authentication:
+    /auth/signup: POST - Create a new user account.
+    /auth/signin: POST - Log in to an existing account.
+
+2. User Profile(JWT will be used):
+    /user/profile: GET - Get the user's profile information.
+    /user/profile/username: PUT - Update the user's existing username.
+    /user/profile/password: PUT - Update the user's existing passowrd.
+
+3. Blogs(JWT will be used):
+    /blog/posts: GET - Get all the blog posts.
+    /blog/:postID : GET - Get the individual blog post with the ID provided.
+    /blog/create: POST - Craete a new blog post.
+    /blog/edit/:blogID: PUT - Update the user's existing blog content.
+    /blog/delete/:blogID: DELETE - Delete the user's blog with given ID.
+
+4. Admin(JWT will be used):
+    /admin/delete/:user: DELETE - Delete any existing account
+
+
+------------------------------------------------------------------------------------------------
+Models:
+1. Users
+2. Blogs
