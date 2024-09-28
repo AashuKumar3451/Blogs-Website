@@ -24,7 +24,9 @@ const blogSchema = mongoose.Schema({
     },
     tags: [String],
     thumbnail: {
-        type: String
+        data: Buffer,
+        filename: String,
+        contentType: String
     },
     summary: {
         type: String

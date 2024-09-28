@@ -9,7 +9,7 @@ Functionalities:
 1. User Sign up/ Sign in.
 2. User can see their profile.
 3. User can update his/her credentials.
-4. User can add a blog and make it private or public according to his/her wish.
+4. User can add a blog.
 5. User can see all user's blogs on the homepage.
 6. User can select single blog and see it in full page.
 7. User can update his/her blog anytime as long as he/she is connected to the system.
@@ -39,7 +39,8 @@ Routes:
     /blog/delete/:blogID: DELETE - Delete the user's blog with given ID.
 
 4. Admin(JWT will be used):
-    /admin/delete/:user: DELETE - Delete any existing account
+    /admin/show/users: GET - Get the details of users to admin.
+    /admin/delete/:user: DELETE - Delete any existing account.
 
 
 ------------------------------------------------------------------------------------------------

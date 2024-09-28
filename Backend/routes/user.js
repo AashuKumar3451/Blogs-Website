@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import { jwtAuthMiddleware } from "../jwt.js";
 import userModel from "../models/users.js";
+import blogModel from "../models/blogs.js";
 
 router.get("/profile", jwtAuthMiddleware, async (req, res) => {
   try {
@@ -10,7 +11,18 @@ router.get("/profile", jwtAuthMiddleware, async (req, res) => {
     if (!person) {
       return res.status(404).json("User is not available anymore.");
     }
-    res.status(200).json({ user: person });
+    let photo = null;
+    if (person.photo && person.photo.data) {
+      photo = `data:${
+        person.photo.contentType
+      };base64,${person.photo.data.toString("base64")}`;
+    }
+    res.status(200).json({
+      user: {
+        ...person.toObject(),
+        photo: photo,
+      },
+    });
   } catch (error) {
     console.log("Error Occured", error);
     res.status(401).json({ err: error });
@@ -30,8 +42,12 @@ router.put("/profile/username", jwtAuthMiddleware, async (req, res) => {
     }
     person.username = newUsername;
     await person.save();
+    await blogModel.updateMany(
+      { accUsername: currentUsername },
+      { accUsername: newUsername }
+    );
     console.log("Username Updated");
-    res.status(200).json("Username Updated");
+    res.status(200).json({ message: "Username Updated" });
   } catch (error) {
     console.log("Error Occured", error);
     res.status(401).json({ err: error });
